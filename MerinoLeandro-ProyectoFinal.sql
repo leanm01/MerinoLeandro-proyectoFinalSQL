@@ -39,7 +39,11 @@ INSERT INTO Sponsor VALUES
 (4,'NISSAN',27),
 (5,'BMG',19);
 
+create view vista_sponsor as
+select id_sponsor,nombre_sponsor from sponsor; 
+
 select * from sponsor;
+select * from vista_sponsor;
 
 alter table Equipo_de_futbol add foreign key (idSponsor) references Sponsor(id_sponsor);
 
@@ -59,7 +63,11 @@ INSERT INTO Presidente_del_club VALUES
 (4,'nik','nok',27),
 (5,'ibarra','hugo',19);
 
+create view vista_Presidente as
+select id_presidente,apellido_presidente from Presidente_del_club; 
+
 select * from Presidente_del_club;
+select * from vista_Presidente;
 
 alter table Equipo_de_futbol add foreign key (idPresidente) references Presidente_del_club(id_presidente);
 
@@ -78,7 +86,11 @@ INSERT INTO resultados VALUES
 (4,32,41),
 (5,14,28);
 
+create view vista_resultados as
+select id_resultados,partidos_ganados_total from resultados; 
+
 select * from resultados;
+select * from vista_resultados;
 
 alter table Equipo_de_futbol add foreign key (idResultados) references resultados(id_resultados);
 
@@ -101,7 +113,11 @@ INSERT INTO director_tecnico VALUES
 (4,'demileche','perro',36,3,0),
 (5,'coco','basile',78,9,10);
 
+create view vista_tecnico as
+select id_director_tecnico,apellido_dt,copas_ganadas_individual from director_tecnico; 
+
 select * from director_tecnico;
+select * from vista_tecnico;
 
 alter table Equipo_de_futbol add foreign key (idDt) references director_tecnico(id_director_tecnico);
 
@@ -147,7 +163,11 @@ INSERT INTO jugadores VALUES
 (4,150,'martin','godermo',36,'boca'),
 (5,420,'emiliano','neuer',34,'bayern munich');
 
+create view vista_jugadores as
+select id_jugadores,apellido_jugador,edad_jugador from jugadores; 
+
 select * from jugadores;
+select * from vista_jugadores;
 
 alter table Equipo_de_futbol add foreign key (idJugadores) references jugadores(id_jugadores);
 

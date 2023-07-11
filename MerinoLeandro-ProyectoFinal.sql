@@ -121,6 +121,8 @@ select * from vista_tecnico;
 
 alter table Equipo_de_futbol add foreign key (idDt) references director_tecnico(id_director_tecnico);
 
+select dinero_ganado_por_partidos(50,500000);
+
 ##################################################################
 
 CREATE TABLE estadio (
@@ -171,6 +173,7 @@ select * from vista_jugadores;
 
 alter table Equipo_de_futbol add foreign key (idJugadores) references jugadores(id_jugadores);
 
+select eficacia_goles_por_partido(50,9);
 
 ##################################################################
 
@@ -196,5 +199,4 @@ alter table Equipo_de_futbol add foreign key (idSocios) references socios(id_soc
 
 ##################################################################
 
-
-
+call obtener_jugadores;

@@ -200,3 +200,54 @@ alter table Equipo_de_futbol add foreign key (idSocios) references socios(id_soc
 ##################################################################
 
 call obtener_jugadores;
+call obtener_presidente;
+
+##################################################################
+
+start transaction;
+update socios
+set
+	dinero_gastado = '8000'
+where
+	id_socios = 1 and
+    nombre_socio = 'juan';
+
+commit;
+
+select * from socios;
+
+##########################
+
+start transaction;
+update jugadores
+set
+	dinero_ganado = '900'
+where
+	id_jugadores = 1 and
+    nombre_jugador = 'alberto';
+
+commit;
+
+select * from jugadores;
+
+
+#########################################################
+
+create user 'presidente@localhost' identified by 'presi23';
+
+grant all on proyecto_final_merino.estadio to 'presidente@localhost';
+
+#########
+
+create user 'messi@localhost' identified by 'messigoat';
+
+grant all on proyecto_final_merino.jugadores to 'messi@localhost';
+
+
+
+
+
+
+
+
+

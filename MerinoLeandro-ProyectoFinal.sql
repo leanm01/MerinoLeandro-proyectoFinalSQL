@@ -205,6 +205,9 @@ call obtener_presidente;
 ##################################################################
 
 start transaction;
+
+savepoint guardado_1;
+
 update socios
 set
 	dinero_gastado = '8000'
@@ -212,13 +215,23 @@ where
 	id_socios = 1 and
     nombre_socio = 'juan';
 
+insert into socios(id_socios,dinero_gastado,nombre_socio,apellido_socio) 
+values(7,5008,'marce','lo');
+
 commit;
 
 select * from socios;
 
+savepoint guardado_2;
+
+rollback to guardado_1;
+
 ##########################
 
 start transaction;
+
+savepoint guardadoDos_1;
+
 update jugadores
 set
 	dinero_ganado = '900'
@@ -226,10 +239,16 @@ where
 	id_jugadores = 1 and
     nombre_jugador = 'alberto';
 
+insert into jugadores(id_jugadores,dinero_ganado,nombre_jugador,apellido_jugador,edad_jugador,equipo_anterior) 
+values(7,500,'meme','deto',31,'barracas central');
+
 commit;
 
 select * from jugadores;
 
+savepoint guardadoDos_2;
+
+rollback to guardadoDos_1;
 
 #########################################################
 
@@ -242,6 +261,8 @@ grant all on proyecto_final_merino.estadio to 'presidente@localhost';
 create user 'messi@localhost' identified by 'messigoat';
 
 grant all on proyecto_final_merino.jugadores to 'messi@localhost';
+
+
 
 
 

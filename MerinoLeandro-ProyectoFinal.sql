@@ -11,17 +11,26 @@ idResultados int,
 idEstadio int,
 idSocios int,
 idDt int,
-idJugadores int
+idJugadores int,
+id_campeonatos_y_ligas_jugados int,
+id_jugadores_sub_15 int,
+id_jugadores_sub_17 int,
+id_jugadores_sub_20 int,
+id_dt_sub_de_la_20 int,
+id_de_la_division_femenina int,
+id_dt_de_seleccion int
 );
 
-INSERT Equipo_de_futbol VALUES (1,100,21,21,1,1,1,1,1,1,1); 
+INSERT Equipo_de_futbol VALUES (1,100,21,21,1,1,1,1,1,1,1,1,1,1,1,1,1,1); 
 INSERT INTO Equipo_de_futbol VALUES 
-(2,60,40,26,2,2,2,2,2,2,2),
-(3,40,20,24,2,2,2,2,2,2,2),
-(4,30,30,28,2,2,2,2,2,2,2),
-(5,10,2,18,2,2,2,2,2,2,2);
+(2,60,40,26,2,2,2,2,2,2,2,2,2,2,2,2,2,2),
+(3,40,20,24,3,3,3,3,3,3,3,3,3,3,3,3,3,3),
+(4,30,30,28,4,4,4,4,4,4,4,4,4,4,4,4,4,4),
+(5,10,2,18,5,5,5,5,5,5,5,5,5,5,5,5,5,5);
 
 select * from Equipo_de_futbol;
+
+
 
 ##################################################################
 
@@ -261,6 +270,145 @@ grant all on proyecto_final_merino.estadio to 'presidente@localhost';
 create user 'messi@localhost' identified by 'messigoat';
 
 grant all on proyecto_final_merino.jugadores to 'messi@localhost';
+
+############################################################ x
+
+CREATE TABLE campeonatos_y_ligas_jugados (
+id_campeonatos_y_ligas INT,
+nombre_campeonatos_ligas varchar(50),
+PRIMARY KEY(id_campeonatos_y_ligas)
+);
+
+INSERT campeonatos_y_ligas_jugados VALUES (1,'primera division argentina');
+INSERT INTO campeonatos_y_ligas_jugados VALUES 
+(2,'libertadores'),
+(3,'supercopa'),
+(4,'copa argentina'),
+(5,'trofeo de campeones');
+
+alter table Equipo_de_futbol add foreign key (id_campeonatos_y_ligas_jugados) references campeonatos_y_ligas_jugados(id_campeonatos_y_ligas);
+
+
+############################################################ x
+
+CREATE TABLE jugadores_sub_15 (
+id_sub_15 INT,
+nombre_jugador_sub_15 varchar(50),
+edad_sub_15 int,
+equipo_sub_15 varchar(50),
+PRIMARY KEY(id_sub_15)
+);
+
+INSERT jugadores_sub_15 VALUES (1,'ricardo',14,'sacachispa');
+INSERT INTO jugadores_sub_15 VALUES 
+(2,'pedro',15,'brown de adrogue'),
+(3,'juan',15,'almirante brown'),
+(4,'tobias',15,'chaco forever'),
+(5,'ayrton',15,'almagro');
+
+alter table Equipo_de_futbol add foreign key (id_jugadores_sub_15) references jugadores_sub_15(id_sub_15);
+
+
+######################################################### x
+
+
+CREATE TABLE jugadores_sub_17 (
+id_sub_17 INT,
+nombre_jugador_sub_17 varchar(50),
+edad_sub_17 int,
+equipo_sub_17 varchar(50),
+PRIMARY KEY(id_sub_17)
+);
+
+INSERT jugadores_sub_17 VALUES (1,'leandro',16,'boca');
+INSERT INTO jugadores_sub_17 VALUES 
+(2,'jose',17,'river'),
+(3,'richard',16,'boca'),
+(4,'manuel',17,'arsenal'),
+(5,'alvaro',17,'colon');
+
+alter table Equipo_de_futbol add foreign key (id_jugadores_sub_17) references jugadores_sub_17(id_sub_17);
+
+######################################################## x 
+
+
+CREATE TABLE jugadores_sub_20 (
+id_sub_20 INT,
+nombre_jugador_sub_20 varchar(50),
+edad_sub_20 int,
+equipo_sub_20 varchar(50),
+PRIMARY KEY(id_sub_20)
+);
+
+INSERT jugadores_sub_20 VALUES (1,'juan manuel',20,'independiente');
+INSERT INTO jugadores_sub_20 VALUES 
+(2,'juan cruz',19,'boca'),
+(3,'peter',20,'racing'),
+(4,'medina',17,'platense'),
+(5,'zeballos',17,'sarmiento');
+
+alter table Equipo_de_futbol add foreign key (id_jugadores_sub_20) references jugadores_sub_20(id_sub_20);
+
+######################################################## x 
+
+
+CREATE TABLE dt_sub_20 (
+id_dt_sub_20 INT,
+nombre_dt_sub_20 varchar(50),
+edad_dt_sub_20 int,
+equipo_dt_sub_20 varchar(50),
+PRIMARY KEY(id_dt_sub_20)
+);
+
+INSERT dt_sub_20 VALUES (1,'mascherano',52,'talleres');
+INSERT INTO dt_sub_20 VALUES 
+(2,'luis',43,'banfield'),
+(3,'gustavo',60,'racing'),
+(4,'tomas',56,'tucuman'),
+(5,'hernan',46,'huracan');
+
+alter table Equipo_de_futbol add foreign key (id_dt_sub_de_la_20) references dt_sub_20(id_dt_sub_20);
+
+######################################################## x 
+
+
+CREATE TABLE division_femenina (
+id_division_femenina INT,
+nombre_jugadora varchar(50),
+edad_jugadora int,
+equipo_jugadora varchar(50),
+PRIMARY KEY(id_division_femenina)
+);
+
+INSERT division_femenina VALUES (1,'laurina',32,'boca');
+INSERT INTO division_femenina VALUES 
+(2,'gabriela',25,'velez'),
+(3,'cecilia',26,'newells'),
+(4,'vanina',24,'santa fe'),
+(5,'agustina',21,'river');
+
+alter table Equipo_de_futbol add foreign key (id_de_la_division_femenina) references division_femenina(id_division_femenina);
+
+######################################################## x 
+
+
+CREATE TABLE dt_de_seleccion (
+id_dt_seleccion INT,
+nombre_dt_de_seleccion varchar(50),
+edad_dt_de_seleccion int,
+PRIMARY KEY(id_dt_seleccion)
+);
+
+INSERT dt_de_seleccion VALUES (1,'scaloni',41);
+INSERT INTO dt_de_seleccion VALUES 
+(2,'basile',52),
+(3,'maradona',64),
+(4,'dalic',56),
+(5,'tite',48);
+
+alter table Equipo_de_futbol add foreign key (id_dt_de_seleccion) references dt_de_seleccion(id_dt_seleccion);
+
+
 
 
 
